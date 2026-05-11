@@ -4,10 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profil - Farizman Yusuf Aryansyah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ── GLOBAL ── */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Poppins", sans-serif; background: linear-gradient(135deg,#f4f3fd,#f9f9ff); min-height: 100vh; color:#26215C; }
+    body { 
+      font-family: "Poppins", sans-serif; 
+      background: linear-gradient(135deg,#f4f3fd,#f9f9ff); 
+      min-height: 100vh; 
+      color:#26215C; 
+    }
 
     /* ── LAYOUT ── */
     .page { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
@@ -16,31 +22,105 @@
     .sidebar {
       background: linear-gradient(180deg,#534AB7,#7F77DD,#AFA9EC);
       padding: 2rem 1.25rem;
-      display: flex; flex-direction: column; align-items: center;
-      position: sticky; top: 0; height: 100vh;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;
+      position: sticky; 
+      top: 0; 
+      height: 100vh;
     }
     .avatar {
-      width: 90px; height: 90px; border-radius: 50%;
-      object-fit: cover; border: 3px solid #fff;
-      margin-bottom: 1rem; transition: transform .3s ease;
+      width: 90px; height: 90px; 
+      border-radius: 50%;
+      object-fit: cover; 
+      border: 3px solid #fff;
+      margin-bottom: 1rem; 
+      transition: transform .3s ease;
     }
     .avatar:hover { transform: scale(1.05); }
-    .s-name { font-size: 15px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 6px; }
-    .s-sub { font-size: 12px; color: #E0E0FF; text-align: center; margin-bottom: 1.25rem; }
-    .nav-item { transition: all .3s ease; }
+    .s-name { 
+      font-size: 15px; 
+      font-weight: 700; 
+      color: #fff; 
+      text-align: center; 
+      margin-bottom: 6px; 
+    }
+    .s-sub { 
+      font-size: 12px; 
+      color: #E0E0FF; 
+      text-align: center; 
+      margin-bottom: 1.25rem; 
+    }
+    .divider { width: 100%; height: 0.5px; background: rgba(255,255,255,0.3); margin-bottom: 1.25rem; }
+
+    .nav-label {
+      font-size: 10px; font-weight: 700; color: #E0E0FF;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      align-self: flex-start; margin-bottom: 0.5rem;
+    }
+
+    .nav-item {
+      width: 100%; display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px; border-radius: 8px;
+      font-size: 13px; color: #E0E0FF; margin-bottom: 2px;
+      transition: all .3s ease;
+    }
+    .nav-item.active { background: rgba(255,255,255,0.2); color: #fff; font-weight: 600; }
     .nav-item:hover { background:#6A61D9; color:#fff; transform: translateX(4px); }
+    .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #E0E0FF; flex-shrink: 0; }
+    .nav-item.active .nav-dot { background: #fff; }
+
+    .motto-box {
+      margin-top: auto; background: rgba(255,255,255,0.15);
+      border-radius: 8px; padding: 0.75rem 1rem; width: 100%;
+    }
+    .motto-box p { 
+      font-size: 12px; color: #fff; 
+      font-style: italic; line-height: 1.6; 
+      text-align: center; 
+    }
 
     /* ── MAIN ── */
     .main { padding: 1.5rem; overflow-y: auto; }
+    .top-bar {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 1.25rem;
+    }
     .page-title { font-size: 22px; font-weight: 700; color: #26215C; }
-    .badge { background:#EEEDFE; color:#3C3489; font-size:12px; font-weight:600; padding:4px 12px; border-radius:20px; }
+    .badge {
+      background:#EEEDFE; color:#3C3489;
+      font-size:12px; font-weight:600;
+      padding:4px 12px; border-radius:20px;
+    }
 
-    /* ── STAT CARDS ── */
-    .stat-card { border-radius: 16px; padding: 1rem; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:.3s; }
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem; margin-bottom: 0.75rem;
+    }
+    .stat-card { 
+      border-radius: 16px; padding: 1rem; 
+      box-shadow:0 4px 12px rgba(0,0,0,0.08); 
+      transition:.3s; 
+    }
     .stat-card:hover { transform:scale(1.03); }
-    .stat-val { font-size:16px; font-weight:700; color:#fff; }
+    .stat-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.6rem;
+    }
+    .stat-val { font-size:16px; font-weight:700; color:#fff; margin-bottom: 2px; }
+    .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.85); }
 
-    /* ── CARD ── */
+    /* Two col */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem; margin-bottom: 0.75rem;
+    }
+
+    /* Card */
     .card {
       background:#fff; border:0.5px solid #e0dff8;
       border-radius:16px; padding:1.25rem; margin-bottom:1rem;
@@ -53,24 +133,57 @@
       border-bottom:2px solid #EEEDFE; padding-bottom:4px;
     }
 
-    /* ── SKILL PILLS ── */
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table tr td {
+      padding: 7px 0; border-bottom: 0.5px solid #f0effe;
+      font-size: 13px; vertical-align: top;
+    }
+    .info-table tr:last-child td { border-bottom: none; }
+    .info-table .ik { color: #9896b0; width: 100px; padding-right: 12px; white-space: nowrap; }
+    .info-table .iv { color: #26215C; font-weight: 600; }
+
+    .edu-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 0.5px solid #f0effe;
+      font-size: 13px; color: #26215C;
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-dot { width: 8px; height: 8px; border-radius: 50%; background: #7F77DD; flex-shrink: 0; }
+    .edu-level { font-size: 11px; color: #9896b0; margin-left: auto; }
+
+    .skill-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem; }
     .skill-pill {
       background: linear-gradient(135deg,#EEEDFE,#DAD7FF);
       color:#3C3489; font-size:12px; font-weight:600;
       padding:6px 14px; border-radius:20px; transition:.3s;
     }
-    .skill-pill:hover { transform:scale(1.05); background:#3C3489; color:#fff; }
+    .skill-pill:hover { 
+      transform:scale(1.05); 
+      background:#3C3489; 
+      color:#fff; 
+    }
 
-    /* ── CONTACT & FOLLOW ── */
+    .about-text { font-size: 13px; color: #555570; line-height: 1.8; }
+
+    .contact-grid, .follow-grid { 
+      display: grid; gap: 0.75rem; 
+    }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .follow-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
     .contact-item, .follow-item {
       background:#faf9fe; border:0.5px solid #e0dff8;
-      border-radius:12px; transition:.3s; box-shadow:0 2px 6px rgba(0,0,0,0.04);
+      border-radius:12px; padding: 12px; 
+      transition:.3s; box-shadow:0 2px 6px rgba(0,0,0,0.04);
     }
-    .contact-item:hover, .follow-item:hover { transform:scale(1.03); }
+    .contact-item:hover, .follow-item:hover { 
+      transform:scale(1.03); 
+    }
 
-    /* ── MOBILE HEADER ── */
+    /* ── MOBILE ── */
     .mobile-header {
-      display:none; background: linear-gradient(90deg,#534AB7,#7F77DD);
+      display:none; 
+      background: linear-gradient(90deg,#534AB7,#7F77DD);
       padding:1rem 1.25rem; align-items:center; gap:1rem;
     }
     .mobile-header .avatar-sm {
@@ -80,15 +193,20 @@
     .mobile-header .m-name { font-size:15px; font-weight:700; color:#fff; }
     .mobile-header .m-sub { font-size:12px; color:#E0E0FF; }
 
-    /* ── MOBILE NAV BAR ── */
     .mobile-nav {
       display:none; position:fixed; bottom:0; left:0; right:0;
       background:#534AB7; padding:10px 0 14px;
       justify-content:space-around; z-index:100;
       border-top:1px solid #7F77DD;
     }
-    .mobile-nav a { display:flex; flex-direction:column; align-items:center; gap:3px; color:#CECBF6; font-size:10px; text-decoration:none; transition:.3s; }
-    .mobile-nav a.active, .mobile-nav a:hover { color:#fff; transform:scale(1.1); }
+    .mobile-nav a { 
+      display:flex; flex-direction:column; align-items:center; 
+      gap:3px; color:#CECBF6; font-size:10px; text-decoration:none; 
+      transition:.3s; 
+    }
+    .mobile-nav a.active, .mobile-nav a:hover { 
+      color:#fff; transform:scale(1.1); 
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width:700px) {
@@ -110,6 +228,13 @@
   </style>
 </head>
 <body>
-  <!-- Semua isi body profil kamu (419 baris konten: sidebar, stat, card, kontak, dll) tetap sama -->
+  <!-- (Isi body HTML tetap sama seperti sebelumnya) -->
+  <!-- Saya tidak mengubah struktur HTML, hanya CSS saja -->
+  
+<div class="page">
+  <!-- ... (semua konten HTML kamu yang lama tetap sama) ... -->
+  <!-- Anda bisa copy-paste seluruh bagian body dari file lama Anda -->
+</div>
+
 </body>
 </html>
